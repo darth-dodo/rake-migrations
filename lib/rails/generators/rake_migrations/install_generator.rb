@@ -17,7 +17,8 @@ module RakeMigrations
         template("rake_migrations_check.rb", "config/rake_migrations_check.rb")
       end
 
-      write_to_post_merge_hook
+      # commenting post merge hook as not required right now
+      # write_to_post_merge_hook
     end
 
     def self.next_migration_number(dirname)
