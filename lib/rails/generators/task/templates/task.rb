@@ -5,7 +5,6 @@
 # 4. Should this be inside a Active Record Transaction block?
 # 5. Are there any callbacks?
 # 6. Performance issues?
-# 7. Only one task per file?
 
 namespace :<%= file_name %> do
 <% actions.each do |action| -%>

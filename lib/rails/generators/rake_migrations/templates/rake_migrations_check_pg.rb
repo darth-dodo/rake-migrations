@@ -1,8 +1,14 @@
 require 'pg'
 
 module RakeMigrationsCheck
-  def self.check
-    client = PG.connect(host: "localhost", user: "<username>", dbname: "<database name>")
+  def self.check database_config_hash
+
+    hostname = database_config_hash["hostname"]
+    database = database_config_hash["database"]
+
+    client = PG.connect(host: hostname,
+                        dbname: database)
+
     results = client.exec("select * from rake_migrations").map {|res| res["version"] }
     rake_migrations_lib = "#{`pwd`.strip}/lib/tasks/rake_migrations/*"
 
@@ -26,4 +32,4 @@ module RakeMigrationsCheck
   end
 end
 
-RakeMigrationsCheck.check
+# RakeMigrationsCheck.check
