@@ -12,9 +12,9 @@ module RakeMigrations
       migration_template "migration.rb", "db/migrate/create_rake_migrations_table.rb"
 
       if args.first == "pg"
-        template("rake_migrations_check_pg.rb", "config/rake_migrations_check.rb")
+        template("rake_migrations_check_pg.rb", "lib/tasks/rake_migrations_check.rb")
       else
-        template("rake_migrations_check.rb", "config/rake_migrations_check.rb")
+        template("rake_migrations_check.rb", "lib/tasks/rake_migrations_check.rb")
       end
 
       # commenting post merge hook as not required right now
