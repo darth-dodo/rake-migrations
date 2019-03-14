@@ -1,15 +1,52 @@
 require 'pg'
 
 module RakeMigrationsCheck
+  class << self
+    attr_accessor :configuration
+  end
+
+  def self.configure
+    self.configuration ||= Configuration.new
+    yield configuration
+  end
+
+  class Configuration
+    attr_accessor :database_name, :hostname
+
+    def initialize
+      @database_name = nil
+      @hostname = nil
+    end
+
+    def database_client
+      validation_presence_of_connection_attributes
+      client = PG.connect(host: hostname,
+                          dbname: database_name)
+      return
+    end
+
+    private
+
+    def validation_presence_of_connection_attributes
+      fail "Database name should be provided!" unless @database_name
+      fail "Host Name should be provided" unless @hostname
+      true
+    end
+
+  end
+
   def self.check
 
-    database_config_hash = DATABASE_CONFIG[Rails.env]
+    # database_config_hash = DATABASE_CONFIG[Rails.env]
 
-    hostname = database_config_hash["hostname"]
-    database = database_config_hash["database"]
+    # database_name = RakeMigrationsCheck.configuration.database_name
+    # hostname = RakeMigrationsCheck.configuration.hostname
 
-    client = PG.connect(host: hostname,
-                        dbname: database)
+    # client = PG.connect(host: hostname,
+    #                     dbname: database_name)
+    #
+
+    client = RakeMigrationsCheck.configuration.database_client
 
     results = client.exec("select * from rake_migrations").map {|res| res["version"] }
     rake_migrations_lib = "#{`pwd`.strip}/lib/tasks/rake_migrations/*"
@@ -32,6 +69,7 @@ module RakeMigrationsCheck
       puts "\n"
     end
   end
+
 end
 
 # RakeMigrationsCheck.check
