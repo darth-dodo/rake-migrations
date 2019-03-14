@@ -1,7 +1,9 @@
 require 'pg'
 
 module RakeMigrationsCheck
-  def self.check database_config_hash
+  def self.check
+
+    database_config_hash = DATABASE_CONFIG[Rails.env]
 
     hostname = database_config_hash["hostname"]
     database = database_config_hash["database"]
