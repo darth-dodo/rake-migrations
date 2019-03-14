@@ -13,7 +13,7 @@ module RakeMigrations
       migration_template "migration.rb", "db/migrate/create_rake_migrations_table.rb"
 
       # copying the RakeMigration Checker template
-      template("rake_migrations_check.rb", "lib/tasks/rake_migrations_check.rb")
+      # template("rake_migrations_check.rb", "lib/tasks/rake_migrations_check.rb")
 
       # copying the Devops task template
       template("devops_rake_utils.rake", "lib/tasks/devops_rake_utils.rake")
