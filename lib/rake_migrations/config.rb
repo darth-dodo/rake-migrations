@@ -24,7 +24,4 @@ module RakeMigrations
     end
 
   end
-
-
-end
 end
