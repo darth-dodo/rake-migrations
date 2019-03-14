@@ -17,23 +17,23 @@ describe TaskGenerator do
     before(:each) do
       time_to_test = Time.now
       allow(Time).to receive(:now).and_return(time_to_test)
-      @timestamp = time_to_test.strftime("%Y%m%d%H%M")
+      @timestamp = time_to_test.strftime("%Y%m%d%H%M%S")
     end
 
     it "should create a file from the timestamp and namespace" do
-      assert_file "lib/tasks/rake_migrations/#{@timestamp}_users.rake"
+      assert_file "lib/tasks/rake_migrations/#{@timestamp}_3cd5f1_users.rake"
     end
 
     it "should have the namespace 'users'" do
-      assert_file "lib/tasks/rake_migrations/#{@timestamp}_users.rake", /namespace :users/
+      assert_file "lib/tasks/rake_migrations/#{@timestamp}_3cd5f1_users.rake", /namespace :users/
     end
 
     it "should have the task 'do_something'" do
-      assert_file "lib/tasks/rake_migrations/#{@timestamp}_users.rake", /task do_something:/
+      assert_file "lib/tasks/rake_migrations/#{@timestamp}_3cd5f1_users.rake", /task do_something:/
     end
 
     it "should have the RakeMigration update" do
-      assert_file "lib/tasks/rake_migrations/#{@timestamp}_users.rake", /RakeMigration.mark_complete/
+      assert_file "lib/tasks/rake_migrations/#{@timestamp}_3cd5f1_users.rake", /RakeMigration.mark_complete/
     end
   end
 
@@ -49,11 +49,11 @@ describe TaskGenerator do
     before(:each) do
       time_to_test = Time.now
       allow(Time).to receive(:now).and_return(time_to_test)
-      @timestamp = time_to_test.strftime("%Y%m%d%H%M")
+      @timestamp = time_to_test.strftime("%Y%m%d%H%M%S")
     end
 
     it "should have the RakeMigration update" do
-      assert_file "lib/tasks/rake_migrations/#{@timestamp}_users.rake", /RakeMigration.mark_complete/
+      assert_file "lib/tasks/rake_migrations/#{@timestamp}_3cd5f1_users.rake", /RakeMigration.mark_complete/
     end
   end
 end
