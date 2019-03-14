@@ -18,7 +18,7 @@ module RakeMigrations
       end
 
       # devops task template
-      template("devops_list_pending_rake_tasks.rb", "lib/tasks/devops_list_pending_migrations.rb")
+      template("devops_rake_utils.rake", "lib/tasks/devops_rake_utils.rake")
 
       # commenting post merge hook as not required right now
       # write_to_post_merge_hook
