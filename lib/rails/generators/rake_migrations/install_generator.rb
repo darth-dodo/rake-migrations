@@ -9,15 +9,13 @@ module RakeMigrations
     source_root File.expand_path('../templates', __FILE__)
 
     def create_migration_file
+      # creating the `rake_migrations` table
       migration_template "migration.rb", "db/migrate/create_rake_migrations_table.rb"
 
-      if args.first == "pg"
-        template("rake_migrations_check_pg.rb", "lib/tasks/rake_migrations_check.rb")
-      else
-        template("rake_migrations_check.rb", "lib/tasks/rake_migrations_check.rb")
-      end
+      # copying the RakeMigration Checker template
+      template("rake_migrations_check.rb", "lib/tasks/rake_migrations_check.rb")
 
-      # devops task template
+      # copying the Devops task template
       template("devops_rake_utils.rake", "lib/tasks/devops_rake_utils.rake")
 
       # commenting post merge hook as not required right now
