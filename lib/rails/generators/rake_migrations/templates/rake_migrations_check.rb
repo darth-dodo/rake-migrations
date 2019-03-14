@@ -1,10 +1,17 @@
-require 'mysql2'
-require 'rake_migrations'
+require 'pg'
 
 module RakeMigrationsCheck
   def self.check
-    client = Mysql2::Client.new(host: "localhost", username: "<username>", database: "<database name>")
-    results = client.query("select * from rake_migrations").map {|res| res["version"] }
+
+    database_config_hash = DATABASE_CONFIG[Rails.env]
+
+    hostname = database_config_hash["hostname"]
+    database = database_config_hash["database"]
+
+    client = PG.connect(host: hostname,
+                        dbname: database)
+
+    results = client.exec("select * from rake_migrations").map {|res| res["version"] }
     rake_migrations_lib = "#{`pwd`.strip}/lib/tasks/rake_migrations/*"
 
     rake_files = Dir[rake_migrations_lib].sort.map do |file|
@@ -27,4 +34,4 @@ module RakeMigrationsCheck
   end
 end
 
-RakeMigrationsCheck.check
+# RakeMigrationsCheck.check
