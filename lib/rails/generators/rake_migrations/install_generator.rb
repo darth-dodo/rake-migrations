@@ -10,7 +10,8 @@ module RakeMigrations
 
     def create_migration_file
       # creating the `rake_migrations` table
-      migration_template "migration.rb", "db/migrate/create_rake_migrations_table.rb"
+      # migration_template "migration_rails_on_and_before_v4.rb", "db/migrate/create_rake_migrations_table.rb"
+      copy_migration_template_based_on_rails_version
 
       # copying the Devops task template
       template("devops_rake_utils.rake", "lib/tasks/devops_rake_utils.rake")
@@ -33,5 +34,20 @@ TEXT
       end
       `chmod 777 #{post_merge_file}`
     end
+
+    private
+    def copy_migration_template_based_on_rails_version
+      if Rails::VERSION::MAJOR <= 4
+        migration_template "migration_rails_on_and_before_v4.rb", "db/migrate/create_rake_migrations_table.rb"
+      else
+        major_version = Rails::VERSION::MAJOR
+        minor_version = Rails::VERSION::MINOR
+        @rails_major_minor_version = "[#{major_version}.#{minor_version}]"
+        migration_template "migration_rails_after_v4.rb", "db/migrate/create_rake_migrations_table.rb",
+                           rails_major_minor_version: @rails_major_minor_version
+
+      end
+    end
+
   end
 end
