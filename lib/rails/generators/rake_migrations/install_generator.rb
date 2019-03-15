@@ -37,11 +37,16 @@ TEXT
 
     private
     def copy_migration_template_based_on_rails_version
-      if Rails::VERSION::MAJOR <= 4
+
+      host_rails_version = Rails.version
+      version_info = host_rails_version.split('.')
+
+      major_version = version_info.first
+      minor_version = version_info.second
+
+      if major_version.to_i <= 4
         migration_template "migration_rails_on_and_before_v4.rb", "db/migrate/create_rake_migrations_table.rb"
       else
-        major_version = Rails::VERSION::MAJOR
-        minor_version = Rails::VERSION::MINOR
         @rails_major_minor_version = "[#{major_version}.#{minor_version}]"
         migration_template "migration_rails_after_v4.rb", "db/migrate/create_rake_migrations_table.rb",
                            rails_major_minor_version: @rails_major_minor_version
