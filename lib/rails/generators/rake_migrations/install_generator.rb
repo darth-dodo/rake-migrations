@@ -42,9 +42,9 @@ TEXT
       else
         major_version = Rails::VERSION::MAJOR
         minor_version = Rails::VERSION::MINOR
-        rails_major_minor_version = "[#{major_version}.#{minor_version}]"
+        @rails_major_minor_version = "[#{major_version}.#{minor_version}]"
         migration_template "migration_rails_after_v4.rb", "db/migrate/create_rake_migrations_table.rb",
-                           rails_major_minor_version: rails_major_minor_version
+                           rails_major_minor_version: @rails_major_minor_version
 
       end
     end
