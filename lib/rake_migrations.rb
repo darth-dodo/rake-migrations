@@ -37,6 +37,8 @@ module RakeMigrations
       puts "------------------------------------"
       rake_files.each { |file| puts "\e[31m#{file}\e[0m" }
       puts "\n"
+    else
+      puts "\e[32mAll rake files are mapped in the DB! No untracked rake tasks are present!\e[0m"
     end
 
   end
