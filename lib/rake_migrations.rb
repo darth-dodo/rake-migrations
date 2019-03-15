@@ -9,16 +9,12 @@ module RakeMigrations
   end
 
   def self.check
-
-    # database_config_hash = DATABASE_CONFIG[Rails.env]
-
-    # database_name = RakeMigrationsCheck.configuration.database_name
-    # hostname = RakeMigrationsCheck.configuration.hostname
-
-    # client = PG.connect(host: hostname,
-    #                     dbname: database_name)
-    #
-
+=begin
+- list out all the filename present in /lib/tasks/rake_migrations/
+- compares the uuid (ts + 6 char) with that present database attached to the application
+- if the file prefix is not present in the `rake_migrations` table, prints out on the console
+  that the rake task is pending
+=end
     client = @config.generate_database_client
 
     results = client.exec("select * from rake_migrations").map {|res| res["version"] }
