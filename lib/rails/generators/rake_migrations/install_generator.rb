@@ -12,14 +12,9 @@ module RakeMigrations
       # creating the `rake_migrations` table
       migration_template "migration.rb", "db/migrate/create_rake_migrations_table.rb"
 
-      # copying the RakeMigration Checker template
-      template("rake_migrations_check.rb", "lib/tasks/rake_migrations_check.rb")
-
       # copying the Devops task template
       template("devops_rake_utils.rake", "lib/tasks/devops_rake_utils.rake")
 
-      # commenting post merge hook as not required right now
-      # write_to_post_merge_hook
     end
 
     def self.next_migration_number(dirname)

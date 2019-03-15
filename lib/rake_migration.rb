@@ -15,4 +15,9 @@ class RakeMigration < ::ActiveRecord::Base
       findcreate_by_version(rake_id)
     end
   end
+
+  def self.check_for_pending_tasks
+    RakeMigrations.check
+  end
+
 end
