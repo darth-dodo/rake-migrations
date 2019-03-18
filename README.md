@@ -12,7 +12,7 @@ If you can help by testing this on different versions, databases and platforms, 
 ## Installation
 First, add this this to your gemfile:
 ```ruby
-gem 'rake_migrations', git: 'https://github.com/darth-dodo/rake-migrations.git'
+gem 'rake_migrations', git: 'https://github.com/Bizongo/rake-migrations.git'
 ```
 
 Then, run:
@@ -107,6 +107,6 @@ All rake files are mapped in the DB! No untracked rake tasks are present!
 ## Issues, suggestions and forks.
 Feel free to open issues, send suggestions and fork this repository.
 
-This gem was developed by [Eyal Eizenberg](http://eyaleizenberg.blogspot.com/2014/08/how-to-keep-track-of-rails-rake-tasks.html) and enhanced by [Abhishek Juneja](https://github.com/darth-dodo/rake-migrations/).
+This gem was developed by [Eyal Eizenberg](http://eyaleizenberg.blogspot.com/2014/08/how-to-keep-track-of-rails-rake-tasks.html) and enhanced by [Abhishek Juneja](https://github.com/darth-dodo/).
 
 Thanks and Enjoy! :)
