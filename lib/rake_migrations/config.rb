@@ -1,10 +1,11 @@
 module RakeMigrations
   class Config
-    attr_accessor :database_name, :hostname, :password
+    attr_accessor :database_name, :hostname, :username, :password
 
     def initialize
       @database_name = nil
       @hostname = nil
+      @username = nil
       @password = nil
     end
 
@@ -23,13 +24,15 @@ module RakeMigrations
     end
 
     def log_presence_of_optional_connection_attributes
+      p 'Connecting to the database without username' unless @username
       p 'Connecting to the database without password' unless @password
     end
 
     def connection_object_based_on_attributes
-      if @password.present?
+      if @password.present? && @username.present?
         client = PG.connect(host: @hostname,
                             dbname: @database_name,
+                            username: @username,
                             password: @password)
       else
         client = PG.connect(host: @hostname,
