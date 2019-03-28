@@ -9,8 +9,6 @@ module RakeMigrations
     source_root File.expand_path('../templates', __FILE__)
 
     def create_migration_file
-      # creating the `rake_migrations` table
-      # migration_template "migration_rails_on_and_before_v4.rb", "db/migrate/create_rake_migrations_table.rb"
       copy_migration_template_based_on_rails_version
 
       # copying the Devops task template

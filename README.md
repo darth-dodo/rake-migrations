@@ -34,6 +34,7 @@ Finally, add the following file in your `config/initializers` folder to provide 
 RakeMigrations.configure do |config|
   config.database_name = DATABASE_CONFIG[Rails.env]['database']
   config.hostname = DATABASE_CONFIG[Rails.env]['host']
+  config.hostname = DATABASE_CONFIG[Rails.env]['password']
 end 
 ```
 
@@ -74,11 +75,7 @@ end
 
 ```
 
-Simply insert your code above the "DO NOT REMOVE THIS PART" line. The checklist is there to help you and the person who is code-reviewing your code to think of problems that might occur from your rake task. Afterwards you can run the rake task normally:
-
-```sh
-rake migrations_test:testing_the_gem
-```
+Simply insert your code above the "DO NOT REMOVE THIS PART" line. The checklist is there to help you and the person who is code-reviewing your code to think of problems that might occur from your rake task.
 
 Afterwards, whenever we need to check whether pending rake tasks, we run the following helper rake task...
 
@@ -91,6 +88,12 @@ rake devops_rake_utils:list_pending_rake_tasks
 ```sh
 You need to run the following rakes:
 ------------------------------------
+rake migrations_test:testing_the_gem
+```
+
+You can run the rake task normally:
+
+```sh
 rake migrations_test:testing_the_gem
 ```
 
