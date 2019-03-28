@@ -1,10 +1,9 @@
 # Checklist:
-# 1. Re-runnable on production?
-# 2. Is there a chance emails will be sent?
-# 3. puts ids & logs (progress log)
-# 4. Should this be inside a Active Record Transaction block?
-# 5. Are there any callbacks?
-# 6. Performance issues?
+# - Should this be inside a Active Record Transaction block?
+# - Do we need to notify BI team or any other team?
+# - Any callbacks, emails or notifications triggered?
+# - Appropriate prints and progress logs?
+# - Performance issues and manual garbage collection required?
 
 namespace :<%= file_name %> do
 <% actions.each do |action| -%>
