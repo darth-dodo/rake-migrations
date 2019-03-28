@@ -1,6 +1,6 @@
 # Checklist:
 # - Should this be inside a Active Record Transaction block?
-# - Do we need to notify BI team or any other team?
+# - Do we need to notify specific stakeholders about the database changes?
 # - Any callbacks, emails or notifications triggered?
 # - Appropriate prints and progress logs?
 # - Performance issues and manual garbage collection required?
