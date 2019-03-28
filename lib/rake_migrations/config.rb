@@ -32,7 +32,7 @@ module RakeMigrations
       if @password.present? && @username.present?
         client = PG.connect(host: @hostname,
                             dbname: @database_name,
-                            username: @username,
+                            user: @username,
                             password: @password)
       else
         client = PG.connect(host: @hostname,
