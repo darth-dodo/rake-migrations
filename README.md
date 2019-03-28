@@ -34,7 +34,8 @@ Finally, add the following file in your `config/initializers` folder to provide 
 RakeMigrations.configure do |config|
   config.database_name = DATABASE_CONFIG[Rails.env]['database']
   config.hostname = DATABASE_CONFIG[Rails.env]['host']
-  config.hostname = DATABASE_CONFIG[Rails.env]['password']
+  config.username = DATABASE_CONFIG[Rails.env]['username']
+  config.password = DATABASE_CONFIG[Rails.env]['password']
 end 
 ```
 
